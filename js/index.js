@@ -93,7 +93,7 @@ let tab = document.getElementById("tab");
 let slidenavbar = document.getElementById("open");
 let searchc=document.getElementById("searchContainer");
 let rowData=document.getElementById("rowData");
-let submitBtn=document.getElementById("submitBtn");
+
 let dataclear="";
 $(function () {
   $(".loader").fadeOut(3000, function () {
@@ -118,10 +118,58 @@ function loader() {
 }
 function done(){alert("done")}
 Contact.addEventListener("click", function () {
+  loader();
   contactdisplay()
   openNav();
-  loader();
+  
+  
 })
+function submitBtn() {
+  var regex={  
+nameInput:  /^[a-zA-Z]+/,
+emailInput:/^\S+@\S+\.\S+$/,
+phoneInput:/^01(1|2|0|5)[0-9]{8}$/,
+ageInput:/[1-9][0-9]/,
+passwordInput:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/,
+};
+let nameInput=document.getElementById("nameInput");
+let emailInput=document.getElementById("emailInput");
+let phoneInput=document.getElementById("phoneInput");
+let ageInput=document.getElementById("ageInput");
+let passwordInput=document.getElementById("passwordInput");
+let repasswordInput=document.getElementById("repasswordInput");
+let element=[nameInput,emailInput,phoneInput,ageInput,passwordInput];
+console.log(element);
+console.log(element[4].id);
+console.log(element[4].value);
+let forend=[];
+element.forEach(function (element) {
+var cond =regex[element.id].test(element.value);
+
+if(cond==true)
+  {
+      element.classList.add("is-valid");
+      element.classList.remove("is-invalid"); 
+      element.nextElementSibling.classList.replace('d-block','d-none');
+      forend.push(element);
+      
+  }
+  else{ 
+      element.classList.add("is-invalid"); 
+      element.classList.remove("is-valid");
+      element.nextElementSibling.classList.replace('d-none','d-block');
+      }
+  
+
+})
+console.log(forend.length)
+console.log(repasswordInput)
+if(forend.length==5&&passwordInput.value==repasswordInput.value){
+done()
+}else
+alert("password or data wronge")
+
+};
 function openNav() {
   if (isOpen == false) {
     tab.classList.replace("fa-align-justify", "fa-x");
@@ -151,46 +199,7 @@ function openNav() {
   
     
 }
-submitBtn.addEventListener("click", function () {
-  var regex={  
-nameInput:  /^[a-zA-Z]+/g,
-emailInput:/^[a-zA-z]+@[a-zA-z]+\.com$/,
-phoneInput:/^[002|+2]01(1|2|0|5)[0-9]{8}$/,
-ageInput:/[1-9][0-9]/,
-passwordInput:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-};
-let nameInput=document.getElementById("nameInput");
-let emailInput=document.getElementById("emailInput");
-let phoneInput=document.getElementById("phoneInput");
-let ageInput=document.getElementById("ageInput");
-let passwordInput=document.getElementById("passwordInput");
-let repasswordInput=document.getElementById("repasswordInput");
-let element=[nameInput,emailInput,phoneInput,ageInput,passwordInput];
-console.log(element.id);
-let forend=[];
-element.forEach(function (element) {
-var cond =regex[element.id].test(element.value);
-if(cond==true)
-  {
-      element.classList.add("is-valid");
-      element.classList.remove("is-invalid"); 
-      element.nextElementSibling.classList.replace('d-block','d-none');
-      forend.push(element);
-      
-  }
-  else{ 
-      element.classList.add("is-invalid"); 
-      element.classList.remove("is-valid");
-      element.nextElementSibling.classList.replace('d-none','d-block');
-      }
-  
 
-})
-if(forend.length==5&&passwordInput==repasswordInput){
-done()
-}
-
-})
 tab.addEventListener("click", function () {
   openNav();
 });
@@ -284,7 +293,7 @@ function contactdisplay() {
                 </div>
             </div>
         </div>
-        <button id="submitBtn" disabled="" class="btn btn-outline-danger px-2 mt-3">Submit</button>
+        <button onclick="submitBtn()" class="btn btn-outline-danger px-2 mt-3">Submit</button>
     </div>
 </div>`;
   document.getElementById("searchContainer").innerHTML = datacollector;
