@@ -148,49 +148,49 @@ function openNav() {
     $('.slidenavbar ul li').animate({top:"100%"},300)
 
   }
-  submitBtn.addEventListener("click", function () {
-        var regex={  
-      nameInput:  /^[a-zA-Z]+/g,
-      emailInput:/^[a-zA-z]+@[a-zA-z]+\.com$/,
-      phoneInput:/^[002|+2]01(1|2|0|5)[0-9]{8}$/,
-      ageInput:/[1-9][0-9]/,
-      passwordInput:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-    };
-    let nameInput=document.getElementById("nameInput");
-    let emailInput=document.getElementById("emailInput");
-    let phoneInput=document.getElementById("phoneInput");
-    let ageInput=document.getElementById("ageInput");
-    let passwordInput=document.getElementById("passwordInput");
-    let repasswordInput=document.getElementById("repasswordInput");
-    let element=[nameInput,emailInput,phoneInput,ageInput,passwordInput];
-  console.log(element.id);
-  let forend=[];
-  element.forEach(function (element) {
-    var cond =regex[element.id].test(element.value);
-    if(cond==true)
-        {
-            element.classList.add("is-valid");
-            element.classList.remove("is-invalid"); 
-            element.nextElementSibling.classList.replace('d-block','d-none');
-            forend.push(element);
-            
-        }
-        else{ 
-            element.classList.add("is-invalid"); 
-            element.classList.remove("is-valid");
-            element.nextElementSibling.classList.replace('d-none','d-block');
-            }
-        
-
-  })
-  if(forend.length==5&&passwordInput==repasswordInput){
-    done()
-  }
-
-  })
+  
     
 }
+submitBtn.addEventListener("click", function () {
+  var regex={  
+nameInput:  /^[a-zA-Z]+/g,
+emailInput:/^[a-zA-z]+@[a-zA-z]+\.com$/,
+phoneInput:/^[002|+2]01(1|2|0|5)[0-9]{8}$/,
+ageInput:/[1-9][0-9]/,
+passwordInput:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+};
+let nameInput=document.getElementById("nameInput");
+let emailInput=document.getElementById("emailInput");
+let phoneInput=document.getElementById("phoneInput");
+let ageInput=document.getElementById("ageInput");
+let passwordInput=document.getElementById("passwordInput");
+let repasswordInput=document.getElementById("repasswordInput");
+let element=[nameInput,emailInput,phoneInput,ageInput,passwordInput];
+console.log(element.id);
+let forend=[];
+element.forEach(function (element) {
+var cond =regex[element.id].test(element.value);
+if(cond==true)
+  {
+      element.classList.add("is-valid");
+      element.classList.remove("is-invalid"); 
+      element.nextElementSibling.classList.replace('d-block','d-none');
+      forend.push(element);
+      
+  }
+  else{ 
+      element.classList.add("is-invalid"); 
+      element.classList.remove("is-valid");
+      element.nextElementSibling.classList.replace('d-none','d-block');
+      }
+  
 
+})
+if(forend.length==5&&passwordInput==repasswordInput){
+done()
+}
+
+})
 tab.addEventListener("click", function () {
   openNav();
 });
@@ -248,37 +248,37 @@ function contactdisplay() {
     <div class="container w-75 text-center">
         <div class="row g-4">
             <div class="col-md-6">
-                <input id="nameInput" onkeyup="inputsValidation()" type="text" class="form-control" placeholder="Enter Your Name">
+                <input id="nameInput"  type="text" class="form-control" placeholder="Enter Your Name">
                 <div id="nameAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Special characters and numbers not allowed
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="emailInput" onkeyup="inputsValidation()" type="email" class="form-control " placeholder="Enter Your Email">
+                <input id="emailInput"  type="email" class="form-control " placeholder="Enter Your Email">
                 <div id="emailAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Email not valid *exemple@yyy.zzz
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="phoneInput" onkeyup="inputsValidation()" type="text" class="form-control " placeholder="Enter Your Phone">
+                <input id="phoneInput"  type="text" class="form-control " placeholder="Enter Your Phone">
                 <div id="phoneAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid Phone Number
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="ageInput" onkeyup="inputsValidation()" type="number" class="form-control " placeholder="Enter Your Age">
+                <input id="ageInput"  type="number" class="form-control " placeholder="Enter Your Age">
                 <div id="ageAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid age
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="passwordInput" onkeyup="inputsValidation()" type="password" class="form-control " placeholder="Enter Your Password">
+                <input id="passwordInput" type="password" class="form-control " placeholder="Enter Your Password">
                 <div id="passwordAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid password *Minimum eight characters, at least one letter and one number:*
                 </div>
             </div>
             <div class="col-md-6">
-                <input id="repasswordInput" onkeyup="inputsValidation()" type="password" class="form-control " placeholder="Repassword">
+                <input id="repasswordInput"  type="password" class="form-control " placeholder="Repassword">
                 <div id="repasswordAlert" class="alert alert-danger w-100 mt-2 d-none">
                     Enter valid repassword 
                 </div>
